@@ -88,13 +88,17 @@
       "areaServed": "Worldwide"
     }
     </script>
+    <!-- Preload logo image to avoid flash/missing load -->
+    <link rel="preload" as="image" href="Duolio-logo-removebg-preview.png" />
+</head>
 <body class="antialiased">
     <div class="background-layer"></div>
     <header id="header" class="sticky top-0 z-50 bg-[var(--c-bg)]/85 backdrop-blur-lg border-b border-[var(--c-border)]">
         <div class="container mx-auto px-4 md:px-8">
             <nav class="flex items-center justify-between h-16">
                 <a href="#home" class="flex items-center gap-3">
-                    <img src="/Duolio-logo-removebg-preview.png" alt="Duolio Logo" class="h-9 w-9 object-contain"/>
+                    <!-- Use relative path so it works whether site root is repository root or /Duolio subdir -->
+                    <img src="Duolio-logo-removebg-preview.png" alt="Duolio Logo" class="h-9 w-9 object-contain" loading="eager" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23040404\'/%3E%3Ctext x=\'50%25\' y=\'55%25\' fill=\'%23ffffff\' font-size=\'10\' font-family=\'Arial, sans-serif\' text-anchor=\'middle\'%3EDuolio%3C/text%3E%3C/svg%3E';" />
                     <span class="text-xl font-semibold text-[var(--c-text-high)]">Duolio</span>
                 </a>
                 <div class="hidden md:flex items-center gap-6 text-sm">
@@ -273,6 +277,10 @@
                         <input required class="form-input" name="email" type="email" placeholder="Email"/>
                     </div>
                     <input class="form-input" name="company" placeholder="Company / Organization"/>
+                    <!-- Honeypot (spam bots often fill every input). Hidden from users. -->
+                    <div style="display:none !important; visibility:hidden; height:0;">
+                        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+                    </div>
                     <select class="form-input" name="project_type" required>
                         <option value="" disabled selected>Project Type</option>
                         <option value="LLM / Chatbot">LLM / Chatbot</option>
@@ -357,7 +365,7 @@
         <div class="container mx-auto px-6 md:px-10 py-14 flex flex-col md:flex-row gap-10 md:gap-20">
             <div class="flex-1">
                 <div class="flex items-center gap-3 mb-4">
-                    <img src="/Duolio-logo-removebg-preview.png" alt="Duolio" class="h-10 w-10"/>
+                    <img src="Duolio-logo-removebg-preview.png" alt="Duolio" class="h-10 w-10" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23040404\'/%3E%3Ctext x=\'50%25\' y=\'55%25\' fill=\'%23ffffff\' font-size=\'10\' font-family=\'Arial, sans-serif\' text-anchor=\'middle\'%3EDuolio%3C/text%3E%3C/svg%3E';" />
                     <span class="text-xl font-semibold text-[var(--c-text-high)]">Duolio</span>
                 </div>
                 <p class="text-sm text-[var(--c-text-mid)]">Precision-engineered AI & automation. From prototype to production.</p>
