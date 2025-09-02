@@ -1,5 +1,7 @@
 <div align="center">
-   <img src="DUOLIO.png" alt="DuoLio" width="90" />
+   <a href="https://duolio.vercel.app/" target="_blank" rel="noopener">
+      <img src="DUOLIO.png" alt="DuoLio logo" width="110" />
+   </a>
   
 
    **Agentic AI & Automation for Compounding Operational Leverage**  
@@ -63,6 +65,7 @@ Bias scans · PII redaction pathways · transparency logs · selective model fal
 Use the “Book an Appointment” form on the site to request a 30‑minute discovery session. We respond within one business day.
 
 ## 📬 Contact
+- Website: https://duolio.vercel.app/  
 - Email: duolio.ai@gmail.com  
 - (Optional) Add your details via the on‑site form – stored securely in our internal Notion workspace.
 
