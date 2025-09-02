@@ -1,7 +1,7 @@
 <div align="center">
-   <img src="Duolio-logo.png" width="90" />
+   <img src="Duolio.png" alt="DuoLio" width="90" />
   
-   # DuoLio
+
    **Agentic AI & Automation for Compounding Operational Leverage**  
    Turning workflows into intelligent, measurable systems that accelerate growth.
 </div>
