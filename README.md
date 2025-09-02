@@ -1,6 +1,6 @@
 <div align="center">
    <a href="https://duolio.vercel.app/" target="_blank" rel="noopener">
-      <img src="DUOLIO.png" alt="DuoLio logo" width="220" />
+      <img src="Duolio-logo-removebg-preview.png" alt="DuoLio logo" width="220" />
    </a>
   
 
