@@ -79,18 +79,19 @@ function initializeForms() {
             const formData = new FormData(contactForm);
             const payload = Object.fromEntries(formData.entries());
 
-            try {
-                const res = await fetch('/api/contact', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                const data = await res.json().catch(()=>({}));
-                if (!res.ok) throw new Error(data.error || 'Failed to send');
-                statusEl.style.color = 'var(--c-accent)';
-                statusEl.textContent = 'Appointment request sent. We will follow up shortly.';
-                contactForm.reset();
-            } catch (err) {
+                        try {
+                                const res = await fetch('/api/contact', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify(payload)
+                                });
+                                const data = await res.json().catch(()=>({}));
+                                if (!res.ok) throw new Error(data.error || 'Failed to send');
+                                statusEl.style.color = 'var(--c-accent)';
+                                statusEl.textContent = '';
+                                contactForm.reset();
+                                showSuccessDialog(payload.name || 'Thank you');
+                        } catch (err) {
                 statusEl.style.color = 'var(--c-warn)';
                 statusEl.textContent = 'Error: ' + err.message;
             } finally {
@@ -100,6 +101,32 @@ function initializeForms() {
             }
         });
     }
+}
+
+function showSuccessDialog(name) {
+        const existing = document.getElementById('appointment-success-dialog');
+        if (existing) existing.remove();
+        const wrapper = document.createElement('div');
+        wrapper.id = 'appointment-success-dialog';
+        wrapper.className = 'fixed inset-0 z-[80] flex items-center justify-center p-4 success-overlay';
+        wrapper.innerHTML = `
+            <div class="success-modal">
+                <div class="icon-wrap">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5 5-5"/></svg>
+                </div>
+                <h3 class="title">Booked Successfully</h3>
+                <p class="msg">${name ? `<span class="highlight">${name}</span>,` : ''} your request was received. We'll reach out shortly to confirm time & next steps.</p>
+                <div class="actions">
+                    <button class="btn-close" type="button">Close</button>
+                    <a href="#services" class="btn-secondary">View Services</a>
+                </div>
+            </div>`;
+        document.body.appendChild(wrapper);
+        const close = () => wrapper.remove();
+        wrapper.addEventListener('click', e => { if (e.target === wrapper) close(); });
+        wrapper.querySelector('.btn-close').addEventListener('click', close);
+        document.addEventListener('keydown', function esc(e){ if(e.key==='Escape'){ close(); document.removeEventListener('keydown', esc);} });
+        setTimeout(()=> wrapper.classList.add('show'), 20);
 }
 
 // --- Fellowship Application Handler ---
