@@ -1,12 +1,12 @@
 # Duolio Portfolio
 
-Static portfolio with Vercel serverless functions for storing contact / appointment inquiries (now supports Notion capture).
+Static portfolio with a single Vercel serverless function that stores appointment inquiries directly into a Notion database.
 
 ## Features
 - AI/ML project showcase & services
-- Appointment form saves submissions to a Notion database (via `/api/contact`)
-- (Optional) Can be extended to persist to Vercel Postgres (`duolio_messages`)
-- (Optional) Protected admin API to list messages
+- Appointment form → Notion database (via `/api/contact`)
+- Zero external DB (No Postgres) – just Notion
+- Honeypot anti-bot field
 
 ## APIs
 ### POST /api/contact
@@ -33,13 +33,13 @@ Request JSON example:
 ```
 Response: `{ ok: true }` on success. (Honeypot field `website` is ignored if filled.)
 
-### GET /api/messages (admin only – optional future)
-If you implement the Postgres storage + admin endpoint, call with header `Authorization: Bearer <ADMIN_TOKEN>` returning `{ messages: [...] }`.
+No other APIs are enabled (admin listing intentionally omitted for Notion‑only setup).
 
 ## Local Dev
-1. Copy `.env.example` to `.env.local` and fill values (Vercel auto-loads `.env.local`).
-2. (Optional) Add the Vercel Postgres integration if you plan to store messages in Postgres.
-3. Install dependencies and run:
+1. Create a Notion integration (https://www.notion.so/my-integrations) and copy the secret.
+2. Create a Notion database and share it with the integration.
+3. Create `.env.local` with the two variables below.
+4. (If you add a package.json later) install dependencies and run dev; for static HTML + serverless you can directly use `vercel dev`.
 ```powershell
 npm install
 npx vercel dev
@@ -49,22 +49,15 @@ npx vercel dev
 ## Deployment (Vercel)
 1. Push repository to GitHub.
 2. Import into Vercel dashboard.
-3. Add Environment Variables (minimum for Notion):
+3. Add Environment Variables in Vercel:
    - `NOTION_API_KEY`
    - `NOTION_DATABASE_ID`
-   (Optional / future)
-   - `POSTGRES_URL`
-   - `ADMIN_TOKEN`
-4. Deploy. Form will call `/api/contact`.
-5. (Optional) To read messages (if admin endpoint added):
-```powershell
-curl -H "Authorization: Bearer $Env:ADMIN_TOKEN" https://<your-app>.vercel.app/api/messages
-```
+4. Deploy. Form posts to `/api/contact`.
 
 ## Notes
-- Table auto-creates on first request; for production, move DDL to a migration step.
-- Add spam protection (hCaptcha, honeypot) if volume increases.
-- Rotate `ADMIN_TOKEN` periodically.
+- Ensure Notion database property names match those listed.
+- Add hCaptcha or rate limiting if spam increases.
+- For exporting data, use Notion’s native export or its API to query pages.
 
 ## License
 Proprietary – customize for personal portfolio use.
