@@ -196,13 +196,12 @@ function initializeNavigation() {
             this.classList.add('active');
             // Allow re-click if already on same hash by performing manual scroll
             if (el) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                // Manually update hash without jumping if already same
-                if (window.location.hash === targetHash) {
-                    history.replaceState(null, '', targetHash);
-                } else {
-                    window.location.hash = targetHash;
-                }
+                const header = document.getElementById('header');
+                const offset = (header ? header.offsetHeight : 64) + 12; // extra breathing room
+                const rect = el.getBoundingClientRect();
+                const targetY = window.pageYOffset + rect.top - offset;
+                window.history.replaceState(null, '', targetHash); // set hash without jump first
+                window.scrollTo({ top: targetY < 0 ? 0 : targetY, behavior: 'smooth' });
             }
             const mobileMenu = document.getElementById('mobile-menu');
             const hamburgerBtn = document.getElementById('hamburger-btn');

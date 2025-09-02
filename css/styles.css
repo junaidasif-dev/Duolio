@@ -15,6 +15,7 @@
     --c-accent-dark: #040404; /* Duolio primary */
     --font-sans: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+    --nav-height: 64px; /* sticky header height */
 }
 
 /* Light Mode Theme */
@@ -547,6 +548,9 @@ body.light-mode .gmail-btn .label-chip {background:rgba(255,255,255,.85); color:
 .gmail-btn.pulse-anim:hover:after {animation-play-state:paused; opacity:0;} 
 body.light-mode .gmail-btn.pulse-anim:after {background:radial-gradient(circle at 50% 50%,rgba(234,67,53,.28),rgba(234,67,53,0) 60%);} 
 .sr-only {position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;}
+
+/* Anchor scroll offset so headings are not hidden behind sticky nav */
+section[id], div[id] { scroll-margin-top: calc(var(--nav-height) + 22px); }
 
 /* Success Dialog */
 .success-overlay {background:rgba(0,0,0,.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); opacity:0; transition:opacity .4s ease;}
