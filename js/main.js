@@ -1,9 +1,9 @@
 /**
- * Duolio Portfolio - Main JavaScript
+ * DuoLio Platform - Main JavaScript
  * Interactive functionality for the AI/ML portfolio site
  */
 
-// --- Page Routing System (updated for Duolio) ---
+// --- Page Routing System (updated for DuoLio) ---
 const navLinks = document.querySelectorAll('.nav-link');
 
 function highlightNav(pageId) {
@@ -125,6 +125,13 @@ function showSuccessDialog(name) {
         const close = () => wrapper.remove();
         wrapper.addEventListener('click', e => { if (e.target === wrapper) close(); });
         wrapper.querySelector('.btn-close').addEventListener('click', close);
+        const servicesBtn = wrapper.querySelector('a[href="#services"]');
+        if (servicesBtn) {
+            servicesBtn.addEventListener('click', (e) => {
+                // allow smooth scroll behavior already bound globally; just close dialog first
+                close();
+            });
+        }
         document.addEventListener('keydown', function esc(e){ if(e.key==='Escape'){ close(); document.removeEventListener('keydown', esc);} });
         setTimeout(()=> wrapper.classList.add('show'), 20);
 }
@@ -379,7 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeRotatingHeroContent();
     initializeProjectModals();
     handleRouteChange();
-    console.log('🚀 Duolio portfolio loaded.');
+    console.log('🚀 DuoLio site loaded.');
     initializeKpiCounters();
     initializeScrollSpy();
     initializeServiceCards();

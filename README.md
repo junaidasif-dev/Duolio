@@ -1,6 +1,6 @@
-# Duolio Portfolio
+# DuoLio Platform
 
-Static portfolio with a single Vercel serverless function that stores appointment inquiries directly into a Notion database.
+Static site with a single Vercel serverless function that stores appointment inquiries directly into a Notion database.
 
 ## Features
 - AI/ML project showcase & services
