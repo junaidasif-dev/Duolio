@@ -74,7 +74,7 @@ function initializeForms() {
             statusEl.textContent = '';
             submitBtn.disabled = true;
             submitBtn.classList.add('opacity-70','pointer-events-none');
-            submitBtn.textContent = 'Sending...';
+                submitBtn.textContent = 'Booking...';
 
             const formData = new FormData(contactForm);
             const payload = Object.fromEntries(formData.entries());
@@ -88,7 +88,7 @@ function initializeForms() {
                 const data = await res.json().catch(()=>({}));
                 if (!res.ok) throw new Error(data.error || 'Failed to send');
                 statusEl.style.color = 'var(--c-accent)';
-                statusEl.textContent = 'Message sent. Thank you!';
+                statusEl.textContent = 'Appointment request sent. We will follow up shortly.';
                 contactForm.reset();
             } catch (err) {
                 statusEl.style.color = 'var(--c-warn)';
@@ -96,7 +96,7 @@ function initializeForms() {
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('opacity-70','pointer-events-none');
-                submitBtn.textContent = 'Send Inquiry';
+                submitBtn.textContent = 'Book Appointment';
             }
         });
     }
@@ -154,8 +154,22 @@ function initializeNavigation() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const targetSection = this.getAttribute('href').substring(1);
-            window.location.hash = this.getAttribute('href');
+            const targetHash = this.getAttribute('href');
+            const targetId = targetHash.substring(1);
+            const el = document.getElementById(targetId);
+            // Immediate visual activation
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+            // Allow re-click if already on same hash by performing manual scroll
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Manually update hash without jumping if already same
+                if (window.location.hash === targetHash) {
+                    history.replaceState(null, '', targetHash);
+                } else {
+                    window.location.hash = targetHash;
+                }
+            }
             const mobileMenu = document.getElementById('mobile-menu');
             const hamburgerBtn = document.getElementById('hamburger-btn');
             if (mobileMenu && hamburgerBtn && mobileMenu.style.maxHeight) {
@@ -339,4 +353,91 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeProjectModals();
     handleRouteChange();
     console.log('🚀 Duolio portfolio loaded.');
+    initializeKpiCounters();
+    initializeScrollSpy();
+    initializeServiceCards();
 });
+
+// --- KPI Counter Animation ---
+function initializeKpiCounters() {
+    const counters = document.querySelectorAll('.kpi-value');
+    if (!counters.length) return;
+    const duration = 1600; // ms
+    const easeOutQuad = (t) => t * (2 - t);
+    const animate = (el) => {
+        const target = parseInt(el.getAttribute('data-target'), 10) || 0;
+        const startTime = performance.now();
+        function frame(now) {
+            const progress = Math.min(1, (now - startTime) / duration);
+            const eased = easeOutQuad(progress);
+            el.textContent = Math.floor(eased * target).toLocaleString();
+            if (progress < 1) requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+    };
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animate(entry.target);
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.4 });
+    counters.forEach(c => observer.observe(c));
+}
+
+// --- Scroll Spy for Active Nav ---
+function initializeScrollSpy() {
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinkMap = new Map();
+    document.querySelectorAll('.nav-link').forEach(link => {
+        navLinkMap.set(link.getAttribute('href').replace('#',''), link);
+    });
+    if (!sections.length) return;
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                if (!id) return;
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                const active = navLinkMap.get(id);
+                if (active) active.classList.add('active');
+            }
+        });
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: [0, 0.25, 0.5] });
+    sections.forEach(sec => observer.observe(sec));
+}
+
+// --- Services Card Enhancements ---
+function initializeServiceCards() {
+    const cards = document.querySelectorAll('.service-card.svc-reveal');
+    if (!cards.length) return;
+    // Stagger animation delays
+    cards.forEach((card, i) => {
+        card.style.setProperty('--svc-delay', 120 * i + 40); // ms
+        // Add pointer light layer
+        const light = document.createElement('div');
+        light.className = 'pointer-light';
+        card.appendChild(light);
+        card.addEventListener('pointermove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const mx = ((e.clientX - rect.left) / rect.width) * 100;
+            const my = ((e.clientY - rect.top) / rect.height) * 100;
+            card.style.setProperty('--mx', mx + '%');
+            card.style.setProperty('--my', my + '%');
+        });
+    });
+    // Enable hover light class on parent for CSS effect
+    const grid = document.querySelector('.service-grid');
+    if (grid) grid.classList.add('hover-light');
+    // IntersectionObserver to trigger animation only when visible (reset initial state until then)
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('svc-animate');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.25 });
+    cards.forEach(card => observer.observe(card));
+}

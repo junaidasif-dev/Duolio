@@ -124,9 +124,11 @@ body.bg-grid .background-layer {
 }
 
 .nav-link.active { 
-    color: var(--c-primary-blue); 
-    font-weight: 600; 
+    color: var(--c-primary-blue) !important; 
+    font-weight: 700; 
+    position:relative;
 }
+.nav-link.active:after {content:""; position:absolute; left:50%; top:100%; width:54%; height:3px; background:linear-gradient(90deg,var(--c-primary-blue),#814fb8); border-radius:4px; transform:translateX(-50%) translateY(4px); box-shadow:0 0 10px -2px rgba(129,79,184,.75),0 0 18px -4px rgba(129,79,184,.55);} 
 
 /* Button Components */
 .btn {
@@ -264,13 +266,32 @@ body.bg-grid .background-layer {
 .project-card:hover { border-color: var(--c-primary-blue); transform: translateY(-6px); box-shadow:0 14px 32px -10px rgba(106,66,145,.4); }
 .project-card:hover:before { opacity:1; }
 
-/* Service cards */
-.service-card { background: var(--c-surface); border:1px solid var(--c-border); padding:1.4rem 1.25rem 1.55rem; border-radius:18px; position:relative; overflow:hidden; transition:.35s; }
-.service-card:after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(106,66,145,.18),transparent 55%); opacity:0; transition:.5s; }
-.service-card h3 { font-size:1rem; font-weight:600; color:var(--c-text-high); margin-bottom:.55rem; }
-.service-card p { font-size:.8rem; line-height:1.25rem; }
-.service-card:hover { border-color:var(--c-primary-blue); transform:translateY(-5px); box-shadow:0 10px 28px -8px rgba(106,66,145,.35); }
-.service-card:hover:after { opacity:1; }
+/* Service cards (revamped) */
+.service-grid {position:relative;}
+.service-card {background:linear-gradient(155deg,var(--c-surface),#0d0d0d 68%); border:1px solid var(--c-border); padding:1.5rem 1.35rem 1.6rem; border-radius:22px; position:relative; overflow:hidden; transition:border-color .4s, transform .5s cubic-bezier(.34,1.56,.64,1), box-shadow .6s; isolation:isolate;}
+.service-card:before {content:""; position:absolute; inset:0; background:radial-gradient(circle at 26% 18%,rgba(106,66,145,.35),transparent 60%); opacity:0; transition:opacity .65s; z-index:0;}
+.service-card:after {content:""; position:absolute; inset:-1px; padding:1px; border-radius:inherit; background:linear-gradient(140deg,rgba(106,66,145,.55),rgba(106,66,145,.08) 45%,rgba(106,66,145,0) 65%); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; opacity:0; transition:opacity .6s;}
+.service-card .svc-icon {width:50px; height:50px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:1.45rem; background:linear-gradient(135deg,rgba(106,66,145,.32),rgba(106,66,145,.12)); border:1px solid var(--c-border); margin:0 0 1rem; position:relative; z-index:2; box-shadow:0 4px 10px -4px rgba(0,0,0,.5);}
+.service-card h3 {font-size:1.02rem; font-weight:600; color:var(--c-text-high); margin:0 0 .55rem; letter-spacing:-.01em; position:relative; z-index:2;}
+.service-card p {font-size:.78rem; line-height:1.25rem; margin:0 0 .95rem; position:relative; z-index:2;}
+.service-card .svc-tags {list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:.4rem; position:relative; z-index:2;}
+.service-card .svc-tags li {font-size:.55rem; letter-spacing:.08em; font-weight:600; text-transform:uppercase; background:rgba(106,66,145,.18); color:var(--c-text-high); padding:.3rem .55rem .28rem; border:1px solid rgba(106,66,145,.35); border-radius:999px; line-height:1; backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px);}
+.service-card:hover {border-color:var(--c-primary-blue); transform:translateY(-8px); box-shadow:0 22px 48px -18px rgba(106,66,145,.55), 0 4px 14px -4px rgba(0,0,0,.6);} 
+.service-card:hover:before {opacity:.9;} 
+.service-card:hover:after {opacity:1;} 
+.service-card:hover .svc-icon {box-shadow:0 6px 18px -6px rgba(106,66,145,.6);} 
+body.light-mode .service-card {background:linear-gradient(155deg,#ffffff,#f2f4f7 68%);} 
+body.light-mode .service-card:before {background:radial-gradient(circle at 26% 18%,rgba(106,66,145,.18),transparent 60%);} 
+body.light-mode .service-card .svc-tags li {background:rgba(106,66,145,.12); color:#1a1a1a; border-color:rgba(106,66,145,.35);} 
+
+/* Service reveal animation */
+.svc-reveal {opacity:0; transform:translateY(28px) scale(.96); animation:svcFade .9s forwards; animation-delay:calc(var(--svc-delay) * 1ms);} 
+@keyframes svcFade {0%{opacity:0; transform:translateY(28px) scale(.96);} 55%{opacity:1;} 100%{opacity:1; transform:translateY(0) scale(1);} }
+
+/* Subtle hover pointer light following cursor (optional) */
+.service-grid.hover-light .service-card {--mx:50%; --my:50%;}
+.service-grid.hover-light .service-card .pointer-light {position:absolute; inset:0; background:radial-gradient(circle at var(--mx) var(--my),rgba(255,255,255,.15),rgba(255,255,255,0) 55%); opacity:0; mix-blend-mode:overlay; transition:opacity .5s; pointer-events:none;}
+.service-grid.hover-light .service-card:hover .pointer-light {opacity:1;}
 
 /* Project Modal */
 #project-modal-root { backdrop-filter: blur(10px); }
@@ -436,3 +457,116 @@ body.light-mode .modal-btn-secondary:hover { background:#cbd5e1; }
 }
 
 #application-process .application-step[data-animated="true"] { animation: fadeSlideIn .7s ease forwards; }
+
+/* --- New Sections (Solutions / Results / Pricing / CTA) --- */
+.solution-card {background:var(--c-surface); border:1px solid var(--c-border); padding:1.4rem 1.25rem 1.55rem; border-radius:18px; position:relative; overflow:hidden; transition:.35s;}
+.solution-card .icon-circle {width:40px; height:40px; display:flex; align-items:center; justify-content:center; background:rgba(106,66,145,.15); border:1px solid var(--c-border); border-radius:12px; font-size:1.1rem; margin-bottom:.85rem;}
+.solution-card:after {content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(106,66,145,.18),transparent 55%); opacity:0; transition:.5s;}
+.solution-card h3 {font-size:1rem; font-weight:600; color:var(--c-text-high); margin-bottom:.55rem;}
+.solution-card p {font-size:.8rem; line-height:1.25rem;}
+.solution-card:hover {border-color:var(--c-primary-blue); transform:translateY(-5px); box-shadow:0 10px 28px -8px rgba(106,66,145,.35);}
+.solution-card:hover:after {opacity:1;}
+
+/* KPI Tiles */
+.kpi-tile {background:var(--c-surface); border:1px solid var(--c-border); border-radius:18px; padding:1.6rem 1.4rem 1.5rem; position:relative; overflow:hidden; text-align:left; display:flex; flex-direction:column; gap:.4rem;}
+.kpi-tile .icon-small {width:32px; height:32px; display:flex; align-items:center; justify-content:center; background:rgba(106,66,145,.15); border:1px solid var(--c-border); border-radius:10px; font-size:.95rem; margin-bottom:.4rem;}
+.kpi-value {font-size:2.2rem; font-weight:700; letter-spacing:-.02em; color:var(--c-text-high); display:inline-block; min-width:2ch;}
+.kpi-suffix {font-size:1.2rem; font-weight:600; margin-left:.15rem; color:var(--c-primary-blue);}
+.kpi-label {font-size:.8rem; letter-spacing:.05em; text-transform:uppercase; font-weight:500; color:var(--c-text-mid);}
+
+/* Pricing */
+.pricing-tier {background:linear-gradient(145deg,var(--c-surface),#101010 70%); border:2px solid var(--c-border); border-radius:26px; padding:1.8rem 1.55rem 2rem; position:relative; display:flex; flex-direction:column; transition:.45s;}
+.pricing-tier .badge {position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:var(--c-primary-blue); color:#fff; font-size:.62rem; letter-spacing:.12em; padding:.45rem .9rem; border-radius:999px; font-weight:600; text-transform:uppercase; box-shadow:0 4px 10px -2px rgba(0,0,0,.4);} 
+.pricing-tier .tier-head h3 {font-size:1.05rem; font-weight:600; color:var(--c-text-high); margin:0 0 .35rem;}
+.pricing-tier .tier-tagline {font-size:.75rem; color:var(--c-text-mid); margin:0 0 .9rem;}
+.pricing-tier .tier-price {display:flex; align-items:flex-end; gap:.35rem; margin-bottom:1.1rem;}
+.pricing-tier .tier-price .amount {font-size:2rem; font-weight:700; letter-spacing:-.02em; color:var(--c-text-high);}
+.pricing-tier .tier-price .period {font-size:.75rem; font-weight:600; color:var(--c-text-mid); margin-bottom:.4rem;}
+.pricing-tier .tier-pricing {display:flex; flex-direction:column; gap:.75rem; margin:.35rem 0 1rem;}
+.pricing-tier .tier-pricing .setup-fee {display:flex; align-items:baseline; gap:.45rem;}
+.pricing-tier .tier-pricing .setup-fee .amount {font-size:1.1rem; font-weight:600; color:var(--c-text-high); letter-spacing:-.01em;}
+.pricing-tier .tier-pricing .setup-fee .label {font-size:.6rem; text-transform:uppercase; letter-spacing:.07em; color:var(--c-text-low); font-weight:600;}
+.pricing-tier .tier-pricing .monthly-fee {display:flex; align-items:flex-end; gap:.35rem;}
+.pricing-tier .tier-pricing .monthly-fee .amount {font-size:1.9rem; font-weight:700; letter-spacing:-.02em; color:var(--c-text-high);}
+.pricing-tier .tier-pricing .monthly-fee .period {font-size:.75rem; font-weight:600; color:var(--c-text-mid); margin-bottom:.4rem;}
+.pricing-tier .tier-pricing .amount {line-height:1;}
+.pricing-tier .tier-features {list-style:none; margin:0 0 1rem; padding:0; display:flex; flex-direction:column; gap:.55rem; font-size:.75rem;}
+.pricing-tier .tier-features li {position:relative; padding-left:1.1rem; color:var(--c-text-mid);} 
+.pricing-tier .tier-features li:before {content:'✔'; position:absolute; left:0; top:0; font-size:.7rem; color:var(--c-primary-blue);} 
+.pricing-tier.highlighted {border-color:var(--c-primary-blue); box-shadow:0 18px 46px -14px rgba(106,66,145,.55);}
+.pricing-tier:hover {transform:translateY(-6px); box-shadow:0 14px 34px -12px rgba(0,0,0,.55);} 
+/* Ensure pricing feature area grows so buttons align at bottom for balanced card height */
+.pricing-tier .tier-features {flex-grow:1;}
+/* Override top margin so buttons sit flush at bottom while keeping spacing if content short */
+.pricing-tier > .btn {margin-top:auto !important;}
+
+/* Light mode overrides */
+body.light-mode .solution-card {background:#ffffff;}
+body.light-mode .kpi-tile {background:#ffffff;}
+body.light-mode .pricing-tier {background:linear-gradient(145deg,#ffffff,#f2f4f7 70%); box-shadow:0 4px 14px -4px rgba(0,0,0,.12);} 
+body.light-mode .pricing-tier.highlighted {box-shadow:0 12px 30px -10px rgba(106,66,145,.35);} 
+
+/* KPI count animation (will be set via JS) */
+.kpi-animated {transition:color .4s;}
+
+/* Contact Section Shell */
+.contact-shell {position:relative; padding:2rem 2rem 2.1rem; border:1px solid var(--c-border); border-radius:26px; background:linear-gradient(160deg,var(--c-surface),#0d0d0d 65%); box-shadow:0 18px 42px -18px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.03) inset; overflow:hidden;}
+.contact-shell:before {content:""; position:absolute; inset:0; background:radial-gradient(circle at 18% 22%,rgba(106,66,145,.25),transparent 60%); opacity:.4; pointer-events:none;}
+.contact-shell form {position:relative; z-index:2;}
+.contact-shell:hover {border-color:var(--c-primary-blue);} 
+body.light-mode .contact-shell {background:linear-gradient(160deg,#ffffff,#f3f5f9 65%); box-shadow:0 10px 28px -12px rgba(0,0,0,.18);} 
+body.light-mode .contact-shell:before {background:radial-gradient(circle at 18% 22%,rgba(106,66,145,.18),transparent 60%);} 
+
+/* Floating Mail Button */
+.floating-mail {position:fixed; bottom:22px; right:22px; z-index:70;}
+.floating-mail-btn {display:flex; align-items:center; justify-content:center; width:50px; height:50px; border-radius:50%; background:linear-gradient(#ffffff,#ffffff) padding-box, conic-gradient(from 140deg,#EA4335,#FBBC05,#34A853,#4285F4,#EA4335) border-box; color:#444; border:2px solid transparent; box-shadow:0 10px 24px -10px rgba(0,0,0,.55),0 2px 0 0 rgba(255,255,255,.05) inset; transition:.45s; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);}
+.gmail-btn {position:relative;}
+.gmail-btn:before {content:""; position:absolute; inset:0; border-radius:50%; background:linear-gradient(140deg,rgba(234,67,53,.18),rgba(251,188,5,.18),rgba(52,168,83,.18),rgba(66,133,244,.18)); opacity:0; transition:.55s; mix-blend-mode:normal;}
+.gmail-btn:hover:before {opacity:1;}
+.floating-mail-btn:hover {transform:translateY(-6px) scale(1.08); box-shadow:0 18px 40px -16px rgba(0,0,0,.68);} 
+.floating-mail-btn:active {transform:translateY(-2px) scale(.95);} 
+.floating-mail-btn:focus-visible {outline:2px solid #4285F4; outline-offset:3px;}
+body.light-mode .floating-mail-btn {background:linear-gradient(#ffffff,#ffffff) padding-box, conic-gradient(from 140deg,#EA4335,#FBBC05,#34A853,#4285F4,#EA4335) border-box; box-shadow:0 8px 20px -10px rgba(0,0,0,.2);} 
+.gmail-icon {display:block;}
+
+/* Hover label chip */
+.gmail-btn .label-chip {position:absolute; right:60px; background:rgba(20,20,20,.9); color:#fff; font-size:.65rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; padding:.45rem .6rem .4rem; border-radius:10px; line-height:1; display:inline-flex; align-items:center; gap:.35rem; box-shadow:0 6px 18px -8px rgba(0,0,0,.6); opacity:0; transform:translateY(4px) scale(.95); transition:.4s; white-space:nowrap; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);} 
+.gmail-btn:hover .label-chip {opacity:1; transform:translateY(0) scale(1);} 
+body.light-mode .gmail-btn .label-chip {background:rgba(255,255,255,.85); color:#222; box-shadow:0 6px 14px -8px rgba(0,0,0,.25);} 
+
+/* Pulse animation */
+@keyframes gmailPulse {0%{transform:scale(1); opacity:.55;}65%{transform:scale(1.7); opacity:0;}100%{opacity:0;}}
+.gmail-btn.pulse-anim:after {content:""; position:absolute; inset:0; border-radius:50%; background:radial-gradient(circle at 50% 50%,rgba(234,67,53,.35),rgba(234,67,53,0) 60%); animation:gmailPulse 3.2s ease-out infinite;}
+.gmail-btn.pulse-anim:hover:after {animation-play-state:paused; opacity:0;} 
+body.light-mode .gmail-btn.pulse-anim:after {background:radial-gradient(circle at 50% 50%,rgba(234,67,53,.28),rgba(234,67,53,0) 60%);} 
+.sr-only {position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;}
+
+/* Header Neon Glow */
+#header {position:sticky; top:0;}
+#header.neon-enabled:after, #header:after {content:""; position:absolute; left:0; right:0; top:100%; height:95px; pointer-events:none; background:
+    radial-gradient(ellipse at 50% 0%, rgba(122,70,190,.55) 0%, rgba(122,70,190,.30) 28%, rgba(122,70,190,.10) 52%, rgba(0,0,0,0) 72%);
+filter:blur(18px); opacity:.9; transform:translateY(-14px); mix-blend-mode:screen;}
+body.light-mode #header:after {background:radial-gradient(ellipse at 50% 0%, rgba(122,70,190,.38) 0%, rgba(122,70,190,.20) 30%, rgba(122,70,190,.08) 52%, rgba(255,255,255,0) 76%); filter:blur(22px); opacity:.82; mix-blend-mode:normal;}
+@media (prefers-reduced-motion: no-preference) {
+    @keyframes navGlowPulse {0%{opacity:.92; filter:blur(20px);} 50%{opacity:.82; filter:blur(24px);} 100%{opacity:.92; filter:blur(20px);} }
+    #header:after {animation:navGlowPulse 7s ease-in-out infinite;}
+}
+
+/* Section Background Variants */
+.section-variant {position:relative;}
+.section-variant:before {content:""; position:absolute; inset:0; pointer-events:none; opacity:.55; mix-blend-mode:normal; transition:opacity .6s;}
+.section-tone-a:before {background:linear-gradient(135deg,rgba(106,66,145,.16),rgba(106,66,145,0) 70%);} 
+.section-tone-b:before {background:linear-gradient(160deg,rgba(60,60,60,.55),rgba(0,0,0,0) 65%);} 
+.section-tone-c:before {background:radial-gradient(circle at 78% 18%,rgba(106,66,145,.22),transparent 65%);} 
+.section-tone-d:before {background:linear-gradient(180deg,rgba(106,66,145,.14) 0%,rgba(0,0,0,0) 75%);} 
+.section-tone-e:before {background:linear-gradient(110deg,rgba(255,255,255,.05) 0%,rgba(0,0,0,0) 70%);} 
+.section-tone-f:before {background:radial-gradient(circle at 24% 75%,rgba(106,66,145,.20),transparent 60%);} 
+.section-variant > * {position:relative; z-index:2;}
+/* Light mode adjustments */
+body.light-mode .section-tone-b:before {background:linear-gradient(160deg,rgba(0,0,0,.04),rgba(255,255,255,0) 65%);} 
+body.light-mode .section-tone-c:before {background:radial-gradient(circle at 78% 18%,rgba(106,66,145,.18),transparent 65%);} 
+body.light-mode .section-tone-d:before {background:linear-gradient(180deg,rgba(106,66,145,.12) 0%,rgba(255,255,255,0) 75%);} 
+body.light-mode .section-tone-e:before {background:linear-gradient(110deg,rgba(106,66,145,.10) 0%,rgba(255,255,255,0) 70%);} 
+body.light-mode .section-tone-f:before {background:radial-gradient(circle at 24% 75%,rgba(106,66,145,.16),transparent 60%);} 
+
+

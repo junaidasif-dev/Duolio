@@ -96,15 +96,16 @@
     <header id="header" class="sticky top-0 z-50 bg-[var(--c-bg)]/85 backdrop-blur-lg border-b border-[var(--c-border)]">
         <div class="container mx-auto px-4 md:px-8">
             <nav class="flex items-center justify-between h-16">
-                <a href="#home" class="flex items-center gap-3">
+                <a href="#home" class="flex items-center gap-1">
                     <!-- Use relative path so it works whether site root is repository root or /Duolio subdir -->
                     <img src="Duolio-logo-removebg-preview.png" alt="Duolio Logo" class="h-9 w-9 object-contain" loading="eager" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23040404\'/%3E%3Ctext x=\'50%25\' y=\'55%25\' fill=\'%23ffffff\' font-size=\'10\' font-family=\'Arial, sans-serif\' text-anchor=\'middle\'%3EDuolio%3C/text%3E%3C/svg%3E';" />
                     <span class="text-xl font-semibold text-[var(--c-text-high)]">Duolio</span>
                 </a>
                 <div class="hidden md:flex items-center gap-6 text-sm">
                     <a href="#home" class="nav-link hover:text-[var(--c-text-high)] transition-colors">Home</a>
-                    <a href="#projects" class="nav-link hover:text-[var(--c-text-high)] transition-colors">Projects</a>
+                    <a href="#solutions" class="nav-link hover:text-[var(--c-text-high)] transition-colors">Solutions</a>
                     <a href="#services" class="nav-link hover:text-[var(--c-text-high)] transition-colors">Services</a>
+                    <a href="#pricing" class="nav-link hover:text-[var(--c-text-high)] transition-colors">Pricing</a>
                     <a href="#contact" class="nav-link hover:text-[var(--c-text-high)] transition-colors">Contact</a>
                 </div>
                 <div class="flex items-center gap-4">
@@ -123,8 +124,9 @@
             <div id="mobile-menu" class="md:hidden">
                 <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3 flex flex-col items-center">
                     <a href="#home" class="nav-link block w-full text-center px-3 py-2 rounded-md text-base">Home</a>
-                    <a href="#projects" class="nav-link block w-full text-center px-3 py-2 rounded-md text-base">Projects</a>
+                    <a href="#solutions" class="nav-link block w-full text-center px-3 py-2 rounded-md text-base">Solutions</a>
                     <a href="#services" class="nav-link block w-full text-center px-3 py-2 rounded-md text-base">Services</a>
+                    <a href="#pricing" class="nav-link block w-full text-center px-3 py-2 rounded-md text-base">Pricing</a>
                     <a href="#contact" class="nav-link block w-full text-center px-3 py-2 rounded-md text-base">Contact</a>
                     <a href="#contact" class="btn btn-primary mt-4 w-full text-center justify-center">Start a Project</a>
                 </div>
@@ -145,7 +147,7 @@
                         Duolio designs, builds & deploys production-grade intelligent systems: from data pipelines to LLM-powered chat, voice interfaces and predictive engines.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center mt-12">
-                        <a href="#projects" class="btn btn-primary text-lg px-10 py-4">View Projects</a>
+                        <a href="#pricing" class="btn btn-primary text-lg px-10 py-4">View Pricing</a>
                         <a href="#services" class="btn bg-[var(--c-surface)] border border-[var(--c-border)] text-[var(--c-text-high)] hover:border-[var(--c-primary-blue)] text-lg px-10 py-4">What We Do</a>
                     </div>
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 text-left">
@@ -170,132 +172,249 @@
             </section>
         </div>
 
-        <!-- PROJECTS -->
-        <div id="projects" class="page pt-12 pb-24">
-            <div class="container mx-auto px-6 md:px-10 max-w-7xl">
-                <div class="max-w-3xl mb-14">
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--c-text-high)] tracking-tight">Projects</h2>
-                    <p class="mt-4 text-lg text-[var(--c-text-mid)]">Selected builds demonstrating end-to-end capability across data, modeling, interaction & deployment.</p>
+    <!-- PROJECTS REMOVED AS PER REQUEST -->
+
+        <!-- SOLUTIONS / CAPABILITIES -->
+    <section id="solutions" class="page pt-4 pb-24 section-variant section-tone-a">
+            <div class="container mx-auto px-6 md:px-10 max-w-7xl text-center">
+                <div class="max-w-3xl mx-auto mb-14">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--c-text-high)] tracking-tight">AI Automation Engine</h2>
+                    <p class="mt-4 text-lg text-[var(--c-text-mid)]">Composable building blocks that turn data & models into shipped outcomes.</p>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Project Card Template -->
-                    <button class="project-card group text-left" data-project="news-classifier">
-                        <div class="inner">
-                            <h3 class="title">News Classifier</h3>
-                            <p class="subtitle">Multi-class NLP classification with deep learning (LSTM).</p>
-                            <span class="more">Read full case →</span>
-                        </div>
-                    </button>
-                    <button class="project-card group text-left" data-project="simple-chatbot">
-                        <div class="inner">
-                            <h3 class="title">Simple Chatbot</h3>
-                            <p class="subtitle">Intent-based conversational agent with pattern matching & NLP preprocessing.</p>
-                            <span class="more">Read full case →</span>
-                        </div>
-                    </button>
-                    <button class="project-card group text-left" data-project="voice-assistant">
-                        <div class="inner">
-                            <h3 class="title">Voice Assistant</h3>
-                            <p class="subtitle">Offline-capable assistant: ASR + command parsing + contextual task routing.</p>
-                            <span class="more">Read full case →</span>
-                        </div>
-                    </button>
+                <div class="grid md:grid-cols-3 gap-8 feature-grid text-left md:text-left">
+                    <div class="solution-card">
+                        <div class="icon-circle" aria-hidden="true">⚙️</div>
+                        <h3>Workflow Orchestration</h3>
+                        <p>Trigger → validate → enrich → act with retries & guardrails.</p>
+                    </div>
+                    <div class="solution-card">
+                        <div class="icon-circle" aria-hidden="true">💬</div>
+                        <h3>Conversational Interfaces</h3>
+                        <p>Chat & voice layers with retrieval, tool-use & evaluation harnesses.</p>
+                    </div>
+                    <div class="solution-card">
+                        <div class="icon-circle" aria-hidden="true">📞</div>
+                        <h3>Voice & Calling AI</h3>
+                        <p>Streaming ASR → intent → TTS for low-latency call flows.</p>
+                    </div>
+                    <div class="solution-card">
+                        <div class="icon-circle" aria-hidden="true">🗓️</div>
+                        <h3>Scheduling Agent</h3>
+                        <p>Constraint reasoning & conflict resolution for automated booking.</p>
+                    </div>
+                    <div class="solution-card">
+                        <div class="icon-circle" aria-hidden="true">📚</div>
+                        <h3>Knowledge / RAG Hub</h3>
+                        <p>Chunking, embeddings & semantic ranking powering grounded answers.</p>
+                    </div>
+                    <div class="solution-card">
+                        <div class="icon-circle" aria-hidden="true">🔗</div>
+                        <h3>Integrations</h3>
+                        <p>CRM, messaging & analytics stitched with idempotent adapters.</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+
+
+    <!-- FINAL CTA -->
+    <section id="cta-final" class="page pt-10 pb-24 section-variant section-tone-c">
+            <div class="container mx-auto px-6 md:px-10 max-w-4xl text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--c-text-high)] tracking-tight">Ready to Compound Operational Leverage?</h2>
+                <p class="mt-6 text-lg md:text-xl text-[var(--c-text-mid)] max-w-2xl mx-auto">Ship reliable AI-driven automation without increasing headcount. We partner from architecture to continuous optimization.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mt-10">
+                    <a href="#contact" class="btn btn-primary px-10 py-4">Start a Conversation</a>
+                    <a href="#pricing" class="btn bg-[var(--c-surface)] border border-[var(--c-border)] text-[var(--c-text-high)] hover:border-[var(--c-primary-blue)] px-10 py-4">View Pricing</a>
+                </div>
+            </div>
+        </section>
 
         <!-- SERVICES -->
-        <div id="services" class="page pt-12 pb-28">
+    <div id="services" class="page pt-12 pb-28 section-variant section-tone-d">
             <div class="container mx-auto px-6 md:px-10 max-w-7xl">
-                <div class="max-w-3xl mb-14">
+                <div class="max-w-3xl mb-14 mx-auto text-center">
                     <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--c-text-high)] tracking-tight">Services</h2>
                     <p class="mt-4 text-lg text-[var(--c-text-mid)]">Full lifecycle AI & ML engineering. Strategy to scalable production.</p>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="service-card">
+                <div class="grid service-grid md:grid-cols-3 gap-8">
+                    <div class="service-card svc-reveal" data-idx="0">
+                        <div class="svc-icon" aria-hidden="true">🧭</div>
                         <h3>AI Strategy & Roadmapping</h3>
                         <p>Opportunity discovery, feasibility, data readiness & architecture blueprints.</p>
+                        <ul class="svc-tags"><li>Discovery</li><li>Architecture</li><li>ROI</li></ul>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card svc-reveal" data-idx="1">
+                        <div class="svc-icon" aria-hidden="true">🧠</div>
                         <h3>Custom ML & Deep Learning</h3>
                         <p>Supervised / self-supervised models: classification, forecasting, embeddings.</p>
+                        <ul class="svc-tags"><li>CV/NLP</li><li>Forecasting</li><li>Embeddings</li></ul>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card svc-reveal" data-idx="2">
+                        <div class="svc-icon" aria-hidden="true">🔗</div>
                         <h3>LLM Integration & Prompt Engineering</h3>
                         <p>OpenAI / local models, retrieval augmentation (RAG), evaluation harnesses.</p>
+                        <ul class="svc-tags"><li>RAG</li><li>Evaluation</li><li>Guardrails</li></ul>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card svc-reveal" data-idx="3">
+                        <div class="svc-icon" aria-hidden="true">💬</div>
                         <h3>NLP & Chatbots</h3>
                         <p>Intent detection, context tracking, semantic search, dialogue flows.</p>
+                        <ul class="svc-tags"><li>Chat</li><li>Semantic</li><li>Context</li></ul>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card svc-reveal" data-idx="4">
+                        <div class="svc-icon" aria-hidden="true">🎙️</div>
                         <h3>Voice Interfaces</h3>
                         <p>Speech recognition, TTS synthesis, command understanding, multi-turn orchestration.</p>
+                        <ul class="svc-tags"><li>ASR</li><li>TTS</li><li>Dialog</li></ul>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card svc-reveal" data-idx="5">
+                        <div class="svc-icon" aria-hidden="true">🛠️</div>
                         <h3>Machine Learning Pipelines</h3>
                         <p>Ingestion, transformation, feature stores, streaming & batch orchestration.</p>
+                        <ul class="svc-tags"><li>ETL</li><li>Feature Store</li><li>Orchestration</li></ul>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card svc-reveal" data-idx="6">
+                        <div class="svc-icon" aria-hidden="true">⚡</div>
                         <h3>Model Optimization</h3>
                         <p>Quantization, pruning, distillation & GPU/edge acceleration.</p>
+                        <ul class="svc-tags"><li>Latency</li><li>Cost</li><li>Edge</li></ul>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card svc-reveal" data-idx="7">
+                        <div class="svc-icon" aria-hidden="true">🤖</div>
                         <h3>AI Automation (RPA + LLM)</h3>
                         <p>Workflow orchestration, agent design, tool-use & safety guardrails.</p>
+                        <ul class="svc-tags"><li>Agents</li><li>RPA</li><li>Guardrails</li></ul>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card svc-reveal" data-idx="8">
+                        <div class="svc-icon" aria-hidden="true">✅</div>
                         <h3>Evaluation & Responsible AI</h3>
                         <p>Test suites, hallucination checks, bias analysis, policy enforcement.</p>
+                        <ul class="svc-tags"><li>Quality</li><li>Bias</li><li>Safety</li></ul>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card svc-reveal" data-idx="9">
+                        <div class="svc-icon" aria-hidden="true">📊</div>
                         <h3>Analytics & Predictive Insights</h3>
                         <p>Time-series forecasting, cohort analysis, anomaly & churn detection.</p>
+                        <ul class="svc-tags"><li>Forecast</li><li>Anomaly</li><li>Churn</li></ul>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card svc-reveal" data-idx="10">
+                        <div class="svc-icon" aria-hidden="true">🔄</div>
                         <h3>n8n Workflow Automation</h3>
                         <p>Visual orchestration of AI & data tasks: triggers, APIs, queue jobs, multi-step automations.</p>
+                        <ul class="svc-tags"><li>n8n</li><li>APIs</li><li>Queues</li></ul>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card svc-reveal" data-idx="11">
+                        <div class="svc-icon" aria-hidden="true">🧪</div>
                         <h3>Consulting & Advisory</h3>
                         <p>Architecture reviews, migration strategy & capability enablement.</p>
+                        <ul class="svc-tags"><li>Reviews</li><li>Migrations</li><li>Enablement</li></ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- CONTACT -->
-        <div id="contact" class="page pt-12 pb-32">
-            <div class="container mx-auto px-6 md:px-10 max-w-4xl">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--c-text-high)] tracking-tight">Let's Build</h2>
-                    <p class="mt-4 text-lg text-[var(--c-text-mid)]">Have a use case or need a second brain on your AI roadmap? Reach out.</p>
+        <!-- PRICING (Relocated just before appointment section) -->
+    <section id="pricing" class="page pt-4 pb-24 section-variant section-tone-e">
+            <div class="container mx-auto px-6 md:px-10 max-w-7xl">
+                <div class="max-w-3xl mb-14 mx-auto text-center">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--c-text-high)] tracking-tight">Pricing</h2>
+                    <p class="mt-4 text-lg text-[var(--c-text-mid)]">Simple, transparent packages. One-time implementation then ongoing optimization.</p>
                 </div>
-                <form id="contact-form" class="max-w-2xl mx-auto grid gap-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <input required class="form-input" name="name" placeholder="Name"/>
-                        <input required class="form-input" name="email" type="email" placeholder="Email"/>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="pricing-tier">
+                        <div class="tier-head">
+                            <h3>Starter</h3>
+                            <p class="tier-tagline">Launch automation for a single core workflow.</p>
+                        </div>
+                        <div class="tier-pricing">
+                            <div class="setup-fee"><span class="amount">$1,500</span> <span class="label">one-time setup</span></div>
+                            <div class="monthly-fee"><span class="amount">$199</span><span class="period">/mo</span></div>
+                        </div>
+                        <ul class="tier-features">
+                            <li>1 Core Automation</li>
+                            <li>Full Setup & Integration</li>
+                            <li>Monitoring & Email Support</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary w-full justify-center mt-6">Get Started</a>
                     </div>
-                    <input class="form-input" name="company" placeholder="Company / Organization"/>
-                    <!-- Honeypot (spam bots often fill every input). Hidden from users. -->
+                    <div class="pricing-tier highlighted">
+                        <div class="badge">Best Value</div>
+                        <div class="tier-head">
+                            <h3>Growth</h3>
+                            <p class="tier-tagline">Expand coverage across multiple processes.</p>
+                        </div>
+                        <div class="tier-pricing">
+                            <div class="setup-fee"><span class="amount">$5,000</span> <span class="label">one-time setup</span></div>
+                            <div class="monthly-fee"><span class="amount">$499</span><span class="period">/mo</span></div>
+                        </div>
+                        <ul class="tier-features">
+                            <li>Up to 3 Core Automations</li>
+                            <li>Advanced Workflow Design</li>
+                            <li>Chat + Voice Interfaces</li>
+                            <li>Priority Support & Proactive Optimization</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary w-full justify-center mt-6">Choose Growth</a>
+                    </div>
+                    <div class="pricing-tier">
+                        <div class="tier-head">
+                            <h3>Enterprise</h3>
+                            <p class="tier-tagline">Custom scale, compliance & SLAs.</p>
+                        </div>
+                        <div class="tier-pricing">
+                            <div class="setup-fee"><span class="amount">Custom</span> <span class="label">implementation</span></div>
+                            <div class="monthly-fee"><span class="amount">Custom</span></div>
+                        </div>
+                        <ul class="tier-features">
+                            <li>Unlimited Automations</li>
+                            <li>Dedicated Architect</li>
+                            <li>Custom Model Training</li>
+                            <li>Voice & Calling AI</li>
+                            <li>Integrations & Enterprise SLAs</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-primary w-full justify-center mt-6">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+    <div id="contact" class="page pt-12 pb-32 section-variant section-tone-f">
+            <div class="container mx-auto px-6 md:px-10 max-w-5xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-[var(--c-text-high)] tracking-tight">Book an Appointment</h2>
+                    <p class="mt-4 text-lg text-[var(--c-text-mid)] max-w-2xl mx-auto">Schedule a free 30‑minute session to map your highest‑leverage AI / automation opportunity and next steps.</p>
+                </div>
+                <div class="contact-shell">
+                <form id="contact-form" class="max-w-3xl mx-auto grid gap-6" autocomplete="on">
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <input required class="form-input" name="name" placeholder="Full Name" aria-label="Full Name" />
+                        <input required class="form-input" name="email" type="email" placeholder="Work Email" aria-label="Work Email" />
+                        <input class="form-input" name="phone" type="tel" placeholder="Phone (optional)" aria-label="Phone" />
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <input class="form-input" name="company" placeholder="Company / Organization" aria-label="Company" />
+                        <select class="form-input" name="project_type" required aria-label="Primary Focus">
+                            <option value="" disabled selected>Primary Focus</option>
+                            <option value="AI Automation / Agents">AI Automation / Agents</option>
+                            <option value="LLM / Chatbot">LLM / Chatbot</option>
+                            <option value="Voice Assistant">Voice / Calling AI</option>
+                            <option value="Predictive Modeling">Predictive Modeling</option>
+                            <option value="Machine Learning">Machine Learning</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <!-- Honeypot -->
                     <div style="display:none !important; visibility:hidden; height:0;">
                         <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
                     </div>
-                    <select class="form-input" name="project_type" required>
-                        <option value="" disabled selected>Project Type</option>
-                        <option value="LLM / Chatbot">LLM / Chatbot</option>
-                        <option value="Voice Assistant">Voice Assistant</option>
-                        <option value="Predictive Modeling">Predictive Modeling</option>
-                        <option value="Machine Learning">Machine Learning</option>
-                        <option value="AI Automation / Agents">AI Automation / Agents</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <textarea rows="5" name="message" class="form-input" placeholder="Brief description / goals" required></textarea>
-                    <div class="flex items-center gap-4 flex-wrap">
-                        <button class="btn btn-primary justify-center" type="submit" id="contact-submit-btn">Send Inquiry</button>
-                        <span id="contact-status" class="text-sm text-[var(--c-text-mid)]"></span>
+                    <textarea rows="5" name="message" class="form-input" placeholder="Goals / current challenges / success definition" aria-label="Notes" required></textarea>
+                    <div class="flex items-center gap-4 flex-wrap justify-center text-center mt-2">
+                        <button class="btn btn-primary justify-center" type="submit" id="contact-submit-btn">Book Appointment</button>
+                        <span id="contact-status" class="text-sm text-[var(--c-text-mid)] w-full"></span>
                     </div>
                 </form>
+                </div>
             </div>
         </div>
     </main>
@@ -361,14 +480,15 @@
         </div>
     </div>
 
-    <footer class="mt-10 border-t border-[var(--c-border)] bg-[var(--c-surface)]">
+    <footer class="mt-0 border-t border-[var(--c-border)] bg-[var(--c-surface)]">
         <div class="container mx-auto px-6 md:px-10 py-14 flex flex-col md:flex-row gap-10 md:gap-20">
             <div class="flex-1">
-                <div class="flex items-center gap-3 mb-4">
+                <div class="flex items-center gap-1 mb-4">
                     <img src="Duolio-logo-removebg-preview.png" alt="Duolio" class="h-10 w-10" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23040404\'/%3E%3Ctext x=\'50%25\' y=\'55%25\' fill=\'%23ffffff\' font-size=\'10\' font-family=\'Arial, sans-serif\' text-anchor=\'middle\'%3EDuolio%3C/text%3E%3C/svg%3E';" />
                     <span class="text-xl font-semibold text-[var(--c-text-high)]">Duolio</span>
                 </div>
                 <p class="text-sm text-[var(--c-text-mid)]">Precision-engineered AI & automation. From prototype to production.</p>
+                <p class="text-sm mt-4"><a href="mailto:duolio.ai@gmail.com" class="hover:text-[var(--c-primary-blue)]">duolio.ai@gmail.com</a></p>
                 <p class="text-xs text-[var(--c-text-low)] mt-4">&copy; 2025 Duolio. All rights reserved.</p>
             </div>
             <div class="grid grid-cols-2 gap-10 flex-[2] max-w-xl">
@@ -386,6 +506,7 @@
                         <li>LLMs / NLP</li>
                         <li>Voice Interfaces</li>
                         <li>AI Agents</li>
+                        <li>Automation</li>
                     </ul>
                 </div>
             </div>
@@ -393,5 +514,18 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <!-- Floating Email Button -->
+    <div class="floating-mail" aria-label="Email Duolio">
+        <a href="mailto:duolio.ai@gmail.com" class="floating-mail-btn gmail-btn pulse-anim" title="Email Duolio" aria-label="Email Duolio">
+            <svg class="gmail-icon" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true" role="img" focusable="false">
+                <path fill="#EA4335" d="M20 18V7.17l-8 5.15-8-5.15V18h4v-7l4 2.6 4-2.6v7h4z"/>
+                <path fill="#34A853" d="M4 6.5l8 5.15 8-5.15v-.58c0-.55-.45-1-1-1h-.67L12 9.07 5.67 4.92H5c-.55 0-1 .45-1 1v.58z" opacity=".95"/>
+                <path fill="#FBBC05" d="M20 6.5l-8 5.15-8-5.15V7.17l8 5.15 8-5.15V6.5z" opacity=".85"/>
+                <path fill="#4285F4" d="M16 18v-7l4-2.6V18h-4zM4 18v-9.6L8 11v7H4z" opacity=".95"/>
+            </svg>
+            <span class="label-chip" aria-hidden="true">Email Us</span>
+            <span class="sr-only">Email</span>
+        </a>
+    </div>
 </body>
 </html>
