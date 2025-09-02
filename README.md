@@ -1,5 +1,5 @@
 <div align="center">
-   <img src="Duolio-logo-removebg-preview.png" alt="DuoLio" width="90" />
+   <img src="LOGO2.png" alt="DuoLio" width="90" />
   
    # DuoLio
    **Agentic AI & Automation for Compounding Operational Leverage**  
