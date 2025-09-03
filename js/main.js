@@ -328,50 +328,6 @@ function initializeRotatingHeroContent() {
 // Removed application funnel code (not needed in portfolio version)
 
 // --- Project Modal System ---
-function initializeProjectModals() {
-    const root = document.getElementById('project-modal-root');
-    const templates = document.getElementById('project-templates');
-    if (!root || !templates) return;
-
-    const backdrop = root.querySelector('.modal-backdrop');
-    const panel = root.querySelector('.modal-panel');
-    const body = root.querySelector('.modal-body');
-
-    function open(projectId) {
-        const tpl = templates.querySelector('#project-' + projectId);
-        if (!tpl) return;
-        body.innerHTML = tpl.innerHTML;
-        root.classList.remove('hidden');
-        requestAnimationFrame(() => {
-            root.classList.add('flex');
-            backdrop.classList.add('transition','duration-500');
-            panel.classList.add('transition','duo-fade-in');
-            backdrop.style.opacity = '1';
-            panel.style.opacity = '1';
-            panel.style.transform = 'translateY(0)';
-        });
-    }
-
-    function close() {
-        backdrop.style.opacity = '0';
-        panel.style.opacity = '0';
-        panel.style.transform = 'translateY(24px)';
-        setTimeout(() => {
-            root.classList.add('hidden');
-            root.classList.remove('flex');
-        }, 320);
-    }
-
-    document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('click', () => open(card.dataset.project));
-    });
-
-    root.addEventListener('click', (e) => {
-        if (e.target === backdrop) close();
-    });
-    root.querySelector('.close-modal').addEventListener('click', close);
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !root.classList.contains('hidden')) close(); });
-}
 
 // --- Event Listeners ---
 window.addEventListener('hashchange', handleRouteChange);
@@ -383,7 +339,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeForms();
     initializeNavigation();
     initializeRotatingHeroContent();
-    initializeProjectModals();
     handleRouteChange();
     console.log('🚀 DuoLio site loaded.');
     initializeKpiCounters();
