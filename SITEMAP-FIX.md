@@ -178,8 +178,55 @@ These simple patterns match:
 - At any path depth
 - Without complex lookaheads or anchors
 
+## Additional Fixes - Final Solution
+
+### 4. Removed Complex Rewrites ✅
+
+**Vercel Error:** "Rewrite at index 0 has invalid `source` pattern"
+
+**Problem:** Complex negative lookahead patterns not supported:
+```json
+// REJECTED by Vercel:
+"source": "/:path((?!sitemap\\.xml|robots\\.txt|manifest\\.json|api|css|js|.*\\.(png|jpg|jpeg|gif|svg|ico|webp)).*)"
+```
+
+**Solution:** Removed `rewrites` section entirely
+
+**Why This Works:**
+- Vercel automatically serves static files from root (sitemap.xml, robots.txt, manifest.json)
+- Single-page app with hash routing (#services, #pricing, etc.) doesn't need rewrites
+- API routes in `/api/` folder work automatically
+- No complex routing needed for this structure
+
+**Benefits:**
+- ✅ Simpler configuration
+- ✅ No regex complexity
+- ✅ Leverages Vercel's default behavior
+- ✅ All files served correctly
+
+## Final Configuration
+
+```json
+{
+  "version": 2,
+  "builds": [...],
+  "headers": [
+    {"source": "/(.*)", "headers": [/* Security */]},
+    {"source": "/(.*)\\.(png|jpg|jpeg|gif|webp|svg|ico)", "headers": [/* Cache images */]},
+    {"source": "/(.*)\\.(css|js)", "headers": [/* Cache CSS/JS */]},
+    {"source": "/api/(.*)", "headers": [/* No cache API */]}
+  ],
+  "trailingSlash": false,
+  "cleanUrls": true
+}
+```
+
+**Removed:**
+- ❌ `routes` section (conflicted with rewrites)
+- ❌ `rewrites` section (complex patterns not needed)
+
 ## Status
-✅ **FIXED** - Ready to deploy
+✅ **FIXED** - Ready to deploy (Simplified configuration)
 
 ---
 
@@ -187,4 +234,9 @@ These simple patterns match:
 **Fixed By**: SEO Implementation  
 **Files Modified**: 
 - sitemap.xml (moved to root)
-- vercel.json (removed routes, updated rewrites, fixed header regex patterns)
+- vercel.json (removed routes, removed rewrites, simplified header patterns)
+
+**Final Approach:** 
+- Keep it simple - let Vercel handle routing automatically
+- Static files served from root
+- Hash routing works without rewrites (#services, #pricing, etc.)
