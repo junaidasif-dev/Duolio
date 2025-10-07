@@ -15,9 +15,15 @@ FROM: /public/sitemap.xml
 TO:   /sitemap.xml (root of Duolio folder)
 ```
 
-### 2. Updated vercel.json Rewrites ✅
+### 2. Updated vercel.json Configuration ✅
+
+**Issue:** Vercel error: "If `rewrites`, `redirects`, `headers`, `cleanUrls` or `trailingSlash` are used, then `routes` cannot be present."
+
+**Fix:** Removed `routes` section (incompatible with `rewrites`)
+
 Changed from:
 ```json
+"routes": [...],
 "rewrites": [
   {
     "source": "/(.*)",
@@ -43,6 +49,8 @@ This regex pattern excludes:
 - `/api/*` routes
 - `/css/*` and `/js/*` folders
 - Image files (.png, .jpg, .jpeg, .gif, .svg, .ico, .webp)
+
+Static files are now served directly without needing explicit routes.
 
 ## Files Fixed
 ✅ `sitemap.xml` - Now in root directory  
