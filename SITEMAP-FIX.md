@@ -154,22 +154,29 @@ For future files that need to be accessible:
 
 **Vercel Error:** "Header at index 1 has invalid `source` pattern"
 
-**Problem:** Double-escaped backslashes in regex patterns
-```json
-// BEFORE (invalid):
-"source": "/(.*\\.(png|jpg|jpeg|gif|webp|svg|ico))"
-```
+**Problem:** Complex regex patterns not compatible with Vercel's parser
 
-**Solution:** Updated to proper Vercel-compatible regex
+**Attempts:**
+1. ❌ `/(.*\\.(png|jpg|jpeg|gif|webp|svg|ico))` - Too many escapes
+2. ❌ `/(.*/)*.+\\.(png|jpg|jpeg|gif|webp|svg|ico)$` - Complex pattern rejected
+
+**Final Solution:** Simplified to basic Vercel-compatible patterns
 ```json
-// AFTER (valid):
-"source": "/(.*/)*.+\\.(png|jpg|jpeg|gif|webp|svg|ico)$"
+// FINAL (working):
+"source": "/(.*)\\.(png|jpg|jpeg|gif|webp|svg|ico)"
+"source": "/(.*)\\.(css|js)"
+"source": "/api/(.*)"
 ```
 
 **All Header Patterns Fixed:**
-- ✅ Image files: `/(.*/)*.+\\.(png|jpg|jpeg|gif|webp|svg|ico)$`
-- ✅ CSS/JS files: `/(.*/)*.+\\.(css|js)$`
+- ✅ Image files: `/(.*)\\.(png|jpg|jpeg|gif|webp|svg|ico)`
+- ✅ CSS/JS files: `/(.*)\\.(css|js)`
 - ✅ API routes: `/api/(.*)`
+
+These simple patterns match:
+- Any file with specified extensions
+- At any path depth
+- Without complex lookaheads or anchors
 
 ## Status
 ✅ **FIXED** - Ready to deploy
