@@ -1,0 +1,33 @@
+{
+  "name": "DuoLio - Agentic AI & Automation",
+  "short_name": "DuoLio",
+  "description": "Agentic AI & Automation engineering for business growth. Autonomous agents, LLM integration, chat & voice interfaces.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#040404",
+  "theme_color": "#6a4291",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/Duolio-logo-removebg-preview.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/Duolio-logo-removebg-preview.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "business",
+    "productivity",
+    "utilities"
+  ],
+  "lang": "en-US",
+  "dir": "ltr",
+  "scope": "/",
+  "screenshots": []
+}

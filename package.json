@@ -1,0 +1,35 @@
+{
+  "name": "duolio",
+  "version": "1.0.0",
+  "description": "DuoLio - Agentic AI & Automation for Business Growth",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site - no build needed'",
+    "deploy": "vercel --prod",
+    "seo-check": "node seo-check.js",
+    "validate-seo": "node seo-check.js",
+    "test": "echo 'No tests configured'"
+  },
+  "keywords": [
+    "agentic-ai",
+    "ai-automation",
+    "llm-integration",
+    "rag-pipelines",
+    "chatbot",
+    "voice-assistant",
+    "business-automation",
+    "machine-learning",
+    "workflow-automation"
+  ],
+  "author": "DuoLio",
+  "license": "UNLICENSED",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/junaidasif-dev/Duolio"
+  },
+  "homepage": "https://duolio.me",
+  "devDependencies": {},
+  "dependencies": {}
+}
