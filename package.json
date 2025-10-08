@@ -1,0 +1,20 @@
+{
+  "name": "duolio",
+  "version": "1.0.0",
+  "description": "DuoLio - Agentic AI & Automation for Business Growth",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "ai",
+    "automation",
+    "agentic-ai",
+    "llm",
+    "rag"
+  ],
+  "author": "DuoLio",
+  "license": "UNLICENSED",
+  "private": true
+}
