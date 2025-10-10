@@ -40,38 +40,38 @@
 
 #### 1. Submit to Google Search Console
 1. Go to: https://search.google.com/search-console
-2. Add property: `https://duolio.vercel.app`
+2. Add property: `https://www.duolio.me`
 3. Verify ownership (HTML file or DNS method)
-4. Submit sitemap: `https://duolio.vercel.app/sitemap.xml`
+4. Submit sitemap: `https://www.duolio.me/sitemap.xml`
 5. Request indexing for homepage
 
 #### 2. Submit to Bing Webmaster Tools
 1. Go to: https://www.bing.com/webmasters
-2. Add site: `https://duolio.vercel.app`
+2. Add site: `https://www.duolio.me`
 3. Verify ownership
-4. Submit sitemap: `https://duolio.vercel.app/sitemap.xml`
+4. Submit sitemap: `https://www.duolio.me/sitemap.xml`
 
 #### 3. Validate Structured Data
 - **Google Rich Results Test**: https://search.google.com/test/rich-results
-- Paste: `https://duolio.vercel.app`
+- Paste: `https://www.duolio.me`
 - Verify all 3 schemas appear (Organization, ProfessionalService, WebSite)
 
 #### 4. Test Social Media Cards
 
 **Facebook Debugger:**
 - URL: https://developers.facebook.com/tools/debug/
-- Enter: `https://duolio.vercel.app`
+- Enter: `https://www.duolio.me`
 - Click "Scrape Again"
 - Verify image and description appear
 
 **Twitter Card Validator:**
 - URL: https://cards-dev.twitter.com/validator
-- Enter: `https://duolio.vercel.app`
+- Enter: `https://www.duolio.me`
 - Verify large image card preview
 
 **LinkedIn Post Inspector:**
 - URL: https://www.linkedin.com/post-inspector/
-- Enter: `https://duolio.vercel.app`
+- Enter: `https://www.duolio.me`
 
 #### 5. Performance Testing
 - **PageSpeed Insights**: https://pagespeed.web.dev/
@@ -217,7 +217,7 @@
 ## 📞 Support
 
 **Last Updated**: October 10, 2025  
-**Domain**: https://duolio.vercel.app  
+**Domain**: https://www.duolio.me  
 **Status**: ✅ Ready for search engine submission  
 **Contact**: duolio.ai@gmail.com
 
