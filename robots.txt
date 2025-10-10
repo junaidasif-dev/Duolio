@@ -1,0 +1,15 @@
+# robots.txt for DuoLio
+# Allow all search engines to crawl the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://duolio.vercel.app/sitemap.xml
+
+# Crawl-delay (optional, be gentle)
+Crawl-delay: 1
+
+# Disallow admin or private paths (if any in future)
+# Disallow: /admin/
+# Disallow: /private/
